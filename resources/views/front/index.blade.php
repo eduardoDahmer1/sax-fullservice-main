@@ -1,0 +1,1 @@
+@includeFirst(['front.themes.' . env('THEME', 'theme-01') . '.pages.home', 'front.themes.theme-01.pages.home'])

@@ -1,0 +1,73 @@
+@extends('layouts.load')
+
+@section('content')
+<div class="content-area">
+
+    <div class="add-product-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="product-description">
+                    <div class="body-area">
+                        @include('includes.admin.form-error')
+                        <form id="geniusformdata" action="{{route('admin-partner-update',$data->id)}}" method="POST"
+                            enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="input-form">
+                                        <p><small>* {{ __("indicates a required field") }}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-xl-6">
+                                    <div class="input-form">
+                                        <h4 class="heading">{{ __('Link') }} *<i class="icofont-question-circle"
+                                                data-toggle="tooltip" style="display: inline-block "
+                                                data-placement="top"
+                                                title="{{ __('Link that will open when the object get clicked') }}"></i>
+                                        </h4>
+                                        <input type="text" class="input-field" name="link"
+                                            placeholder="{{ __('Link') }}" value="{{$data->link}}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <div class="input-form">
+                                        <h4 class="heading">{{ __('Current Featured Image') }} *</h4>
+                                        <div class="img-upload full-width-img">
+                                            <div id="image-preview" class="img-preview"
+                                                style="background: url({{ $data->photo ? asset('storage/images/partner/'.$data->photo):asset('assets/images/noimage.png') }});">
+                                                <label for="image-upload" class="img-label" id="image-label"><i
+                                                        class="icofont-upload-alt"></i>{{ __('Upload Image') }}</label>
+                                                <input type="file" name="photo" class="img-upload" id="image-upload">
+                                            </div>
+                                            <p class="text">{{ __('Prefered Size: (600x600) or Square Sized Image') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--FECHAMENTO TAG ROW-->
+
+                            <div class="row justify-content-center">
+
+                                <button class="addProductSubmit-btn mt-4" type="submit">{{ __('Save') }}</button>
+
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@endsection

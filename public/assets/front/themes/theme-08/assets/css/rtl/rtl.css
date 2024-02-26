@@ -1,0 +1,279 @@
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+}
+
+a {
+    color: #000000;
+}
+
+.section-top .section-title {
+    color: #000000;
+}
+
+.logo-header .search-box .categori-container {
+    width: 170px;
+}
+
+.logo-header .search-box .categori-container .categoris option {
+    background: #000000;
+}
+
+.logo-header .helpful-links ul li.my-dropdown .cart .icon i {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li.my-dropdown .cart p {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li.my-dropdown .my-dropdown-menu .dropdownmenu-wrapper .dropdown-cart-header .item-no {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li.my-dropdown .my-dropdown-menu .dropdownmenu-wrapper .dropdown-cart-header .view-cart {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li.my-dropdown .my-dropdown-menu .dropdownmenu-wrapper .dropdown-cart-products .product .product-details .content .product-title {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li .wish i {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li .wish p {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li .sign-log i {
+    color: #000000;
+}
+
+.logo-header .helpful-links ul li .sign-log .links a {
+    color: #000000;
+}
+
+.hero-area .hero-area-slider .intro-carousel .intro-content .slider-content .layer-1 .subtitle {
+    color: #000000;
+}
+
+.hero-area .hero-area-slider .intro-carousel .intro-content .slider-content .layer-2 .text {
+    color: #000000;
+}
+
+.item .info .name {
+    height: 90px;
+}
+
+.flash-deals .flas-deal-slider .item .price .old-price {
+    color: #000000;
+}
+
+.flash-deals .flas-deal-slider .item .price .old-price::after {
+    background: #000000;
+}
+
+.flash-deals .flas-deal-slider .item .deal-counter span small {
+    color: #000000;
+}
+
+.hot-and-new-item .categori .item-list li .single-box .right-area .price {
+    color: #000000;
+}
+
+.footer {
+    background: #000000;
+}
+
+.product-details-page .right-area .product-info .info-meta-1 ul li p {
+    color: #000000;
+}
+
+.product-details-page #product-details-tab.ui-tabs .ui-tabs-panel .heading-area .reating-area .reting-and-review {
+    color: #000000;
+}
+
+.product-details-page #product-details-tab .top-menu-area ul li a {
+    color: #000000;
+}
+
+.product-details-page #product-details-tab .top-menu-area ul li a::after {
+    background: #000000;
+}
+
+#product-details-tab #replay-area .all-replay li .single-review .left-area .name {
+    color: #000000;
+}
+
+#product-details-tab #replay-area .all-replay li .single-review .left-area .date {
+    color: #000000;
+}
+
+#product-details-tab #replay-area .all-replay li .single-review .right-area .header-area .title {
+    color: #000000;
+}
+
+#product-details-tab #comment-area .all-comment li .single-comment .left-area .name {
+    color: #000000;
+}
+
+#product-details-tab #comment-area .all-comment li .single-comment .left-area .date {
+    color: #000000;
+}
+
+#product-details-tab #comment-area .all-comment li .single-comment .right-area .header-area .title {
+    color: #000000;
+}
+
+#product-details-tab #comment-area .all-comment li .replay-area .remove {
+    background: #000000;
+}
+
+#product-details-tab #comment-area .write-comment-area .submit-btn:hover {
+    background: #000000;
+}
+
+.product-details-page .categori .item-list li .single-box .right-area .price {
+    color: #000000;
+}
+
+.price-range-field {
+    width: 60px;
+}
+
+.sub-categori .left-area .tags-area .body-area .taglist li a {
+    color: #000000;
+}
+
+.sub-categori .left-area .all-categories-area .body-area .cat-list li a {
+    color: #000000;
+}
+
+.sub-categori .right-area .pagination-area .pagination .page-item .page-link {
+    color: #000000;
+}
+
+.order-box .title {
+    color: #000000;
+}
+
+.order-box .order-btn:hover {
+    background: #000000;
+}
+
+.contact-us .contact-section-title .subtitle {
+    color: #000000;
+}
+
+.contact-us .right-area .top-content .title {
+    color: #000000;
+}
+
+.contact-us .right-area .social-links .title {
+    color: #000000;
+}
+
+.login-area .submit-btn:hover {
+    background: #000000;
+}
+
+.login-area .social-area .text {
+    color: #000000;
+}
+
+.comment-log-reg-tabmenu .nav-tabs .nav-link.active {
+    background: #000000;
+}
+
+.login-area .submit-btn:hover {
+    background: #000000;
+}
+
+.login-area .social-area .text {
+    color: #000000;
+}
+
+.comment-log-reg-tabmenu .nav-tabs .nav-link.active {
+    background: #000000;
+}
+
+.login-area .submit-btn:hover {
+    background: #000000;
+}
+
+.login-area .social-area .text {
+    color: #000000;
+}
+
+.comment-log-reg-tabmenu .nav-tabs .nav-link.active {
+    background: #000000;
+}
+
+.compare-page .com-heading .title {
+    color: #000000;
+}
+
+.compare-page-content-wrap .first-column {
+    color: #000000;
+}
+
+.user-dashbord .user-profile-details .mycard::after {
+    background: #000000;
+}
+
+.user-dashbord .user-profile-details .account-info .header-area .title {
+    color: #000000;
+}
+
+.user-dashbord .user-profile-details .account-info .edit-info-area .edit-info-area-form .back {
+    background: #000000;
+}
+
+.user-dashbord .user-profile-details .order-history .header-area .title {
+    color: #000000;
+}
+
+.user-dashbord .user-profile-details .order-details .header-area .title {
+    color: #000000;
+}
+
+.user-dashbord .user-profile-details .order-details .back-btn {
+    background: #000000;
+}
+
+.thankyou .content {
+    background: #000000;
+}
+
+.single-wish .right .price {
+    color: #000000;
+}
+
+.user-profile-details .allproduct .view-order {
+    background: #000000;
+}
+
+.autocomplete-items div {
+    background: #000000;
+    border: 0.5px solid #000000;
+}
+
+.elegant-pricing-tables h3 .price-sticker, .elegant-pricing-tables:hover, .elegant-pricing-tables.active, .elegant-pricing-tables:hover .price, .elegant-pricing-tables.active .price, .elegant-pricing-tables.style-2 .price, .elegant-pricing-tables .btn {
+    background: #000000
+}
+
+.elegant-pricing-tables .price {
+    color: #000000;
+    border-color: #000000
+}
+
+.elegant-pricing-tables:hover h3 .price-sticker, .elegant-pricing-tables.active h3 .price-sticker, .elegant-pricing-tables:hover .btn, .elegant-pricing-tables.active .btn, .elegant-pricing-tables.style-2:hover .price, .elegant-pricing-tables.style-2.active .price {
+    color: #000000
+}
+
+.verify-link {
+    color: green;
+    right: -25px;
+    top: 0px;
+}

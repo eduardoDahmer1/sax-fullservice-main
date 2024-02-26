@@ -1,0 +1,1 @@
+@extends('front.themes.shared.checkout_layout')

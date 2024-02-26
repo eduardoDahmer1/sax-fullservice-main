@@ -1,0 +1,195 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="content-area">
+        <div class="mr-breadcrumb">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="heading">{{ __('Tickets') }}</h4>
+                    <ul class="links">
+                        <li>
+                            <a href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }} </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin-message-index') }}">{{ __('Tickets') }}</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="product-area">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mr-table allproduct">
+
+                        @include('includes.admin.form-success')
+
+                        <div class="table-responsiv">
+                            <table id="geniustable" class="table table-hover dt-responsive" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th><i class="icofont-options icofont-lg" data-toggle="tooltip"
+                                                title='{{ __('Options') }}'></i></th>
+                                        <th>{{ __('Subject') }}</th>
+                                        <th><i class="icofont-ui-message icofont-lg" data-toggle="tooltip"
+                                                title='{{ __('Message') }}'></i></th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th><i class="icofont-calendar icofont-lg" data-toggle="tooltip"
+                                                title='{{ __('Date') }}'></i></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- DELETE MODAL --}}
+
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header d-block text-center">
+                    <h4 class="modal-title d-inline-block">{{ __('Confirm Delete') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p class="text-center">
+                        {{ __('You are about to delete this Ticket. Every messages under this Ticket will be deleted.') }}
+                    </p>
+                    <p class="text-center">{{ __('Do you want to proceed?') }}</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Cancel') }}</button>
+                    <a class="btn btn-danger btn-ok">{{ __('Delete') }}</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{-- DELETE MODAL ENDS --}}
+
+    {{-- MESSAGE MODAL --}}
+    <div class="sub-categori">
+        <div class="modal" id="vendorform" tabindex="-1" role="dialog" aria-labelledby="vendorformLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="vendorformLabel">{{ __('Send Message') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="contact-form">
+                                        <form id="emailreply1">
+                                            {{ csrf_field() }}
+                                            <ul>
+                                                <li>
+                                                    <input type="email" class="input-field eml-val" id="eml1"
+                                                        name="to" placeholder="{{ __('Email') }} *" value=""
+                                                        required="">
+                                                </li>
+                                                <li>
+                                                    <input type="text" class="input-field" id="subj1" name="subject"
+                                                        placeholder="{{ __('Subject') }} *" required="">
+                                                </li>
+                                                <li>
+                                                    <textarea class="input-field textarea" name="message" id="msg1" placeholder="{{ __('Your Message') }} *"
+                                                        required=""></textarea>
+                                                </li>
+                                                <input type="hidden" name="type" value="Ticket">
+                                            </ul>
+                                            <button class="submit-btn" id="emlsub1"
+                                                type="submit">{{ __('Send Message') }}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- MESSAGE MODAL ENDS --}}
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        var table = $('#geniustable').DataTable({
+            stateSave: true,
+            stateDuration: -1,
+            ordering: false,
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('admin-message-datatables', 'Ticket') }}',
+            columns: [{
+                    data: 'action',
+                    searchable: false,
+                    orderable: false
+                },
+                {
+                    data: 'subject',
+                    name: 'subject'
+                },
+                {
+                    data: 'message',
+                    name: 'message'
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                    searchable: false
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                    searchable: false
+                }
+            ],
+            language: {
+                url: '{{ $datatable_translation }}',
+                processing: '<img src="{{ $admstore->adminLoaderUrl }}">'
+            },
+            drawCallback: function(settings) {
+                $(this).find('.select').niceSelect();
+            },
+            initComplete: function(settings, json) {
+                /*
+                 * Setando no Cookie a página atual
+                 */
+                $("#geniustable").on('page.dt', function() {
+                    sessionStorage.setItem("CurrentPage", table.page());
+                });
+            }
+        });
+        if (sessionStorage.getItem("CurrentPage") == undefined) {
+            sessionStorage.setItem("CurrentPage", 0);
+        }
+        $(document).on('click', 'a', function(e) {
+            var link = jQuery(this);
+            if (!(link.attr("data-href") || link.attr("href").indexOf("#") > -1 || link.attr("href").indexOf(
+                    "message") > -1 || link.attr("href").indexOf("javascript") > -1)) {
+                sessionStorage.setItem("CurrentPage", 0);
+                table.state.clear();
+            }
+        });
+    </script>
+@endsection

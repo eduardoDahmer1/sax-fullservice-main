@@ -1,0 +1,35 @@
+.whatsapp-widget {
+    /* widget do whatapp */
+    position: fixed;
+    bottom: 10px;
+    left: 1%;
+    padding: 10px;
+    z-index: 0;
+    display: block;
+    height: 70px;
+    filter: drop-shadow(1px 1px 1px #777);
+}
+
+.logo-header .container .row {
+    align-items: center;
+}
+
+@media (max-width: 550px) {
+    .whatsapp-widget {
+        height: 60px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .whatsapp-widget {
+        height: 80px;
+    }
+}
+
+.contact-us .right-area .social-links ul li a.instagram {
+    background: #cc2366;
+}
+
+.rolagemhtml {
+    overflow: hidden;
+}

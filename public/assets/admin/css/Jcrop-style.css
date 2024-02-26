@@ -1,0 +1,149 @@
+#fileInput {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+#modal {
+  z-index: 10;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #5F5F5F;
+  opacity: 0.95;
+  display: none;
+}
+
+#preview {
+  z-index: 11;
+  position: fixed;
+  top: 5% !important;
+  left: 35% !important;
+  display: none;
+  border: 4px solid #A5A2A2;
+  border-radius: 4px;
+  float: left;
+  font-size: 0px;
+  line-height: 0px;
+}
+
+#preview .buttons {
+  width: 36px;
+  position: absolute;
+  bottom: 0px;
+  right: -44px;
+}
+
+#preview .buttons .ok {
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/Ok.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .ok:hover { background-image: url('../images/OkGreen.png'); }
+
+#preview .buttons .cancel {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/Cancel.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .cancel:hover { background-image: url('../images/CancelRed.png'); }
+
+#preview .buttons .zoomIn {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/zoomIn.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .zoomIn:hover { background-image: url('../images/zoomInGreen.png'); }
+
+#preview .buttons .zoomOut {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/zoomOut.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .zoomOut:hover { background-image: url('../images/zoomOutGreen.png'); }
+
+#preview .buttons .moveUp {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/moveUp.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .moveUp:hover { background-image: url('../images/moveUpGreen.png'); }
+
+#preview .buttons .moveRigth {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/moveRigth.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .moveRigth:hover { background-image: url('../images/moveRigthGreen.png'); }
+
+#preview .buttons .moveDown {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/moveDown.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .moveDown:hover { background-image: url('../images/moveDownGreen.png'); }
+
+#preview .buttons .moveLeft {
+  margin-bottom: 4px;
+  border: 4px solid #F5F5F5;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  line-height: 0px;
+  font-size: 0px;
+  background-image: url('../images/moveLeft.png');
+  background-repeat: no-repeat;
+}
+
+#preview .buttons .moveLeft:hover { background-image: url('../images/moveLeftGreen.png'); }
+

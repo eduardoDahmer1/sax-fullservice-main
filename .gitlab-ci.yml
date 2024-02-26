@@ -1,0 +1,139 @@
+default:
+  image: lorisleiva/laravel-docker:8.1
+
+services:
+  - mysql:latest
+
+stages:
+  - building
+  - testing
+  - deploying-stagings
+  - deploying-production
+
+variables:
+  MYSQL_DATABASE: ci
+  MYSQL_ROOT_PASSWORD: cipass
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - vendor/
+    - .env
+
+1-db-connection:
+  stage: building
+  image: mysql
+  script:
+    - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE"
+  only:
+    - feature/migrate-crow-store
+
+2-composer:
+  stage: building
+  needs: ["1-db-connection"]
+  script:
+    - php -v
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    - cp .env.example .env
+    - php artisan key:generate
+  only:
+    - feature/migrate-crow-store
+
+3-db-seeding:
+  stage: building
+  needs: ["2-composer"]
+  services:
+  - name: mysql:latest
+    command: ["--default-authentication-plugin=mysql_native_password"]
+  script:
+    - mysql --version
+    - php artisan migrate --path=database/migrations/crow_empty
+    - php artisan migrate --force
+    - php artisan db:seed
+    - mysqldump --host=mysql --user=root --password="$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" > db.sql
+  artifacts:
+    paths:
+      - storage/logs # for debugging
+      - db.sql
+    expire_in: 1 days
+    when: always
+  only:
+    - feature/migrate-crow-store
+4-tag:
+  stage: deploying-production
+  needs: ["3-db-seeding"]
+  variables:
+    TAG: gitlab_${CI_PIPELINE_IID}_${CI_PIPELINE_ID}_${CI_COMMIT_REF_SLUG}
+  before_script:
+    - PROJECT_URL=$(echo $CI_PROJECT_URL | sed 's/https:\/\///')
+    - git remote set-url origin https://gitlab-ci-token:$GITLAB_TOKEN@$PROJECT_URL
+  script:
+    - echo "Build and tag the commit"
+    - echo "$GITLAB_TOKEN"
+    - echo "$PROJECT_URL"
+    - git tag $TAG
+    - git push origin $TAG
+  when: manual
+  only:
+    - feature/migrate-crow-store
+## TODO: phpunit
+5-integration-stage:
+  stage: deploying-stagings
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$LARAVEL9_TOKEN" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan "$HOST" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - git remote add production "$USERNAME"@"$HOST":/var/www/stages.git
+    - git remote -v
+    - git status
+    - git push -f production HEAD:refs/heads/"$CI_COMMIT_REF_NAME"
+  when: manual
+6-normal-stage:
+  stage: deploying-stagings
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$STORES_STAGES_TOKEN" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan "$TREE_HOST" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - git remote add production "$USER"@"$TREE_HOST":/var/www/stores9-stages.git
+    - git remote -v
+    - git status
+    - git push -f production HEAD:refs/heads/"$CI_COMMIT_REF_NAME"
+  when: manual
+7-integration-stores:
+  stage: deploying-production
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$LARAVEL9_TOKEN" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan "$HOST" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - git remote add production "$USERNAME"@"$HOST":/var/www/crow-enterprise.git
+    - git remote -v
+    - git status
+    - git push -f production HEAD:refs/tags/"$CI_COMMIT_TAG"
+  only:
+    - tags
+  when: manual
+8-normal-stores:
+  stage: deploying-production
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$SECOND_LARAVEL9_TOKEN" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan "$SECOND_HOST" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - git remote add production "$USERNAME"@"$SECOND_HOST":/var/www/crow-enterprise.git
+    - git remote -v
+    - git status
+    - git push -f production HEAD:refs/tags/"$CI_COMMIT_TAG"
+  only:
+    - tags
+  when: manual

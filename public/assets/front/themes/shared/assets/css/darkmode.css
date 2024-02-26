@@ -1,0 +1,51 @@
+body {
+    background-color: #222;
+    background-attachment: fixed;
+    background-size: 700px;
+}
+
+.electronics-section .aside {
+    border: none;
+}
+
+.section-top {
+    border-bottom: 1px solid rgba(252, 252, 252, 0.425);
+}
+
+.accessories-slider .categori .item-slide {
+    background-color: #fff;
+    margin: 5px;
+    border-radius: 15px;
+}
+
+.hot-and-new-item .categori .item-list li .single-box .left-area img {
+    border-radius: 15px;
+}
+
+.hot-and-new-item .categori .item-list li .single-box {
+    margin-bottom: 0;
+    padding:5px;
+}
+
+.breadcrumb-area {
+    background-color:rgb(17, 17, 17);
+}
+
+.breadcrumb-area .pages li a {
+    color: #fff;
+}
+
+.sub-categori .container, 
+.checkout .container, 
+.compare-page .container, 
+.user-dashbord .container, 
+.about .container, 
+.product-details-page .container,
+.blog-details .container,
+.marcas-page .container,
+.blogpagearea .container,
+.cartpage .container {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+}
